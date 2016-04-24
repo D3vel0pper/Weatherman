@@ -12,8 +12,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.LinearLayout;
 
 import d3vel0pper.com.weatherman.R;
+import d3vel0pper.com.weatherman.common.HttpResponseTask;
 import d3vel0pper.com.weatherman.fragment.NavigationDrawerFragment;
 
 //
@@ -134,6 +136,9 @@ public class MainActivity extends ActionBarActivity
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            LinearLayout parent = (LinearLayout)rootView.findViewById(R.id.parent);
+            HttpResponseTask task = new HttpResponseTask(this.getActivity(),parent);
+            task.execute();
             return rootView;
         }
 
