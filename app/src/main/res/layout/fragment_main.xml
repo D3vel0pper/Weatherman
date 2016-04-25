@@ -7,12 +7,14 @@
     tools:context=".MainActivity$PlaceholderFragment"
     android:id="@+id/parent"
     android:orientation="vertical">
+
     <TextView android:id="@+id/wTitle"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="58dp"
         android:text="wTitle"
         android:textSize="50sp"/>
+
     <LinearLayout
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
@@ -20,6 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         >
+
         <Button
             android:text="←"
             android:textSize="45sp"
@@ -29,6 +32,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="#0000FF"/>
+
         <ImageView
             android:id="@+id/wImage"
             android:layout_marginLeft="20dp"
@@ -37,6 +41,7 @@
             android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
             android:background="#005500"/>
+
         <Button
             android:text="→"
             android:textSize="45sp"
@@ -46,7 +51,9 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="#0000FF"/>
-        </LinearLayout>
+
+    </LinearLayout>
+
     <TextView
         android:id="@+id/descText"
         android:text="descWeather"
@@ -62,6 +69,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal">
+
         <TextView
             android:id="@+id/temperatureMax"
             android:text="Max : "
@@ -70,6 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="15dp"
             android:background="#FF33FF"/>
+
         <TextView
             android:id="@+id/temperatureMin"
             android:text="Min : "
@@ -78,6 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:background="#FFDDFF"/>
+
     </LinearLayout>
 
     <Button
@@ -86,6 +96,7 @@
         android:layout_gravity="end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
     <TextView
         android:id="@+id/wCopyright"
         android:text="copyright"
@@ -93,6 +104,5 @@
         android:gravity="end"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
 
 </LinearLayout>
