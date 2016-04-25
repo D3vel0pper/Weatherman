@@ -5,9 +5,94 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".MainActivity$PlaceholderFragment"
-    android:id="@+id/parent">
+    android:id="@+id/parent"
+    android:orientation="vertical">
+    <TextView android:id="@+id/wTitle"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:text="wTitle"
+        android:textSize="50sp"/>
+    <LinearLayout
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        >
+        <Button
+            android:text="←"
+            android:textSize="45sp"
+            android:textColor="#66FFFFFF"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="25dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="#0000FF"/>
+        <ImageView
+            android:id="@+id/wImage"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:background="#005500"/>
+        <Button
+            android:text="→"
+            android:textSize="45sp"
+            android:textColor="#66FFFFFF"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="25dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="#0000FF"/>
+        </LinearLayout>
+    <TextView
+        android:id="@+id/descText"
+        android:text="descWeather"
+        android:textSize="40sp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
 
-    <TextView android:id="@+id/section_label" android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/temperatureMax"
+            android:text="Max : "
+            android:textSize="48sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:background="#FF33FF"/>
+        <TextView
+            android:id="@+id/temperatureMin"
+            android:text="Min : "
+            android:textSize="48sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:background="#FFDDFF"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/detailBtn"
+        android:text="showMoreDetail"
+        android:layout_gravity="end"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/wCopyright"
+        android:text="copyright"
+        android:layout_gravity="bottom"
+        android:gravity="end"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 
 </LinearLayout>
