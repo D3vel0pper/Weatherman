@@ -111,6 +111,7 @@ public class MainActivity extends ActionBarActivity
      * A placeholder fragment containing a simple view.
      */
     public static class PlaceholderFragment extends Fragment {
+        private boolean flag = false;
         /**
          * The fragment argument representing the section number for this
          * fragment.
@@ -137,8 +138,13 @@ public class MainActivity extends ActionBarActivity
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             LinearLayout parent = (LinearLayout)rootView.findViewById(R.id.parent);
-            HttpResponseTask task = new HttpResponseTask(this.getActivity(),parent);
-            task.execute();
+
+            if(!flag){
+                HttpResponseTask task = new HttpResponseTask(this.getActivity(),parent);
+                task.execute();
+                flag = true;
+            }
+
             return rootView;
         }
 
@@ -148,6 +154,13 @@ public class MainActivity extends ActionBarActivity
             ((MainActivity) activity).onSectionAttached(
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
+
+        @Override
+        public void onDetach() {
+            super.onDetach();
+            flag = false;
+        }
+
     }
 
 }
