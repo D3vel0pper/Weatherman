@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -74,9 +75,7 @@ public class MainActivity extends ActionBarActivity
                         .commit();
                 break;
             default:
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                        .commit();
+                Toast.makeText(getBaseContext(),"OtherItemClicked!!",Toast.LENGTH_SHORT).show();
                 break;
         }
 
