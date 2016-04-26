@@ -63,7 +63,7 @@ public class HttpResponseTask extends AsyncTask<Void,Void,WeatherData> {
             JSONObject jsonObject = new JSONObject(result);
             data.setTitle(jsonObject.getString("title"));
             //data.setDescriptionText(jsonObject.getJSONObject("description").getString("text"));
-            data.setDescriptionTime(jsonObject.getJSONObject("description").getString("publicTime"));
+            //data.setDescriptionTime(jsonObject.getJSONObject("description").getString("publicTime"));
             data.setLocation(jsonObject.getJSONObject("location").getString("area") + " / " +
                     jsonObject.getJSONObject("location").getString("prefecture") + " / " +
                     jsonObject.getJSONObject("location").getString("city"));

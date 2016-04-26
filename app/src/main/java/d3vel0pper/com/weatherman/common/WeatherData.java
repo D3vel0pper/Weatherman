@@ -1,4 +1,7 @@
 package d3vel0pper.com.weatherman.common;
+
+import android.graphics.Bitmap;
+
 /**
  * Created by D3velopper on 2016/04/18.
  * use this api for connecting↓
@@ -12,11 +15,9 @@ public class WeatherData {
 
     }
 
-    public String publicTime;
     //description whether of where
     private String wTitle = "";
     private String descriptionText = "";
-    private String descriptionTime = "";
     //public String[] wForcast;
     //area + "/" + prefecture + "/" + city
     private String wLocation = "";
@@ -24,6 +25,8 @@ public class WeatherData {
      * provider.name + ":" + provider.link + "\n" + link + "\n + title"
      */
     private String wCopyright = "";
+    private String ImgURL;
+
 
     //Setters
     public void setTitle(String title){
@@ -38,13 +41,6 @@ public class WeatherData {
             return;
         }
         this.descriptionText = descriptionText;
-    }
-
-    public void setDescriptionTime(String descriptionTime){
-        if(descriptionTime==null){
-            return;
-        }
-        this.descriptionTime = descriptionTime;
     }
 
     /**
@@ -77,10 +73,6 @@ public class WeatherData {
 
     public String getDescriptionText(){
         return this.descriptionText;
-    }
-
-    public String getDescriptionTime(){
-        return this.descriptionTime;
     }
 
     public String getLocation(){

@@ -12,7 +12,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import d3vel0pper.com.weatherman.R;
 import d3vel0pper.com.weatherman.common.HttpResponseTask;
@@ -47,6 +52,7 @@ public class MainActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
     }
 
     @Override
@@ -157,6 +163,25 @@ public class MainActivity extends ActionBarActivity
                 task.execute();
                 flag = true;
             }
+
+            TextView wTitle,descText,temperatureMax,temperatureMin,wCopyright;
+            Button detailBtn;
+            ImageView temperatureImg;
+
+            //Title
+            wTitle = (TextView)rootView.findViewById(R.id.wTitle);
+            //description text of forecast
+            descText = (TextView)rootView.findViewById(R.id.descText);
+            //Max temperature
+            temperatureMax = (TextView)rootView.findViewById(R.id.temperatureMax);
+            //Min temperature
+            temperatureMin = (TextView)rootView.findViewById(R.id.temperatureMin);
+            //Copyright
+            wCopyright = (TextView)rootView.findViewById(R.id.wCopyright);
+
+            detailBtn = (Button)rootView.findViewById(R.id.detailBtn);
+
+            temperatureImg = (ImageView)rootView.findViewById(R.id.wImage);
 
             return rootView;
         }
