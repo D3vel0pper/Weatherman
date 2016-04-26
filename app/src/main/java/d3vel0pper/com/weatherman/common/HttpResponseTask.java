@@ -1,6 +1,7 @@
 package d3vel0pper.com.weatherman.common;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Button;
@@ -30,6 +31,7 @@ public class HttpResponseTask extends AsyncTask<Void,Void,WeatherData> {
     private Activity act = null;
     //layout which have each textview to show
     private LinearLayout linearLayout;
+    private ProgressDialog progressDialog;
 
     public HttpResponseTask(Activity activity, LinearLayout ll){
         this.LocBaseUrl = activity.getString(R.string.LocBaseUrl);
@@ -40,6 +42,9 @@ public class HttpResponseTask extends AsyncTask<Void,Void,WeatherData> {
     @Override
     protected void onPreExecute(){
         super.onPreExecute();
+        progressDialog = new ProgressDialog(act);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
     }
 
     @Override
@@ -116,6 +121,7 @@ public class HttpResponseTask extends AsyncTask<Void,Void,WeatherData> {
     @Override
     protected void onPostExecute(WeatherData data){
         super.onPostExecute(data);
+
         if(data == null){
             Toast.makeText(act, "!! result is null !!", Toast.LENGTH_SHORT).show();
         } else{
@@ -144,15 +150,7 @@ public class HttpResponseTask extends AsyncTask<Void,Void,WeatherData> {
 
 
             wCopyright.setText(data.getCopyright());
-            linearLayout.invalidate();
-
-
-//            TextView descTime = (TextView)linearLayout.findViewById(R.id.descTime);
-//            descTime.setText(data.getDescriptionTime());
-//            TextView descText = (TextView)linearLayout.findViewById(R.id.description);
-//            descText.setText(data.getDescriptionText());
-//            TextView wLocation = (TextView)linearLayout.findViewById(R.id.location);
-//            wLocation.setText(data.getLocation());
+            progressDialog.dismiss();
 
         }
     }

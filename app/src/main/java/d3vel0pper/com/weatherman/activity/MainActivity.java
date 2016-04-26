@@ -54,6 +54,8 @@ public class MainActivity extends ActionBarActivity
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
+
+
     }
 
     @Override
@@ -139,6 +141,7 @@ public class MainActivity extends ActionBarActivity
      */
     public static class PlaceholderFragment extends Fragment {
         private boolean flag = false;
+        private LinearLayout parentLayout;
         /**
          * The fragment argument representing the section number for this
          * fragment.
@@ -164,7 +167,7 @@ public class MainActivity extends ActionBarActivity
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            LinearLayout parentLayout = (LinearLayout)rootView.findViewById(R.id.parent);
+            parentLayout = (LinearLayout)rootView.findViewById(R.id.parent);
 
             if(!flag){
                 HttpResponseTask task = new HttpResponseTask(this.getActivity(),parentLayout);
@@ -189,6 +192,7 @@ public class MainActivity extends ActionBarActivity
             super.onAttach(activity);
             ((MainActivity) activity).onSectionAttached(
                     getArguments().getInt(ARG_SECTION_NUMBER));
+
         }
 
         @Override
