@@ -156,22 +156,22 @@ public class MainActivity extends ActionBarActivity
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            LinearLayout parent = (LinearLayout)rootView.findViewById(R.id.parent);
+            LinearLayout parentLayout = (LinearLayout)rootView.findViewById(R.id.parent);
 
             if(!flag){
-                HttpResponseTask task = new HttpResponseTask(this.getActivity(),parent);
+                HttpResponseTask task = new HttpResponseTask(this.getActivity(),parentLayout);
                 task.execute();
                 flag = true;
             }
 
-            TextView wTitle,descText,temperatureMax,temperatureMin,wCopyright;
+            TextView wTitle,telopText,temperatureMax,temperatureMin,wCopyright;
             Button detailBtn;
             ImageView temperatureImg;
 
             //Title
             wTitle = (TextView)rootView.findViewById(R.id.wTitle);
             //description text of forecast
-            descText = (TextView)rootView.findViewById(R.id.descText);
+            telopText = (TextView)rootView.findViewById(R.id.telopText);
             //Max temperature
             temperatureMax = (TextView)rootView.findViewById(R.id.temperatureMax);
             //Min temperature

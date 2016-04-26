@@ -55,7 +55,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/descText"
+        android:id="@+id/telopText"
         android:text="descWeather"
         android:textSize="40sp"
         android:gravity="center"

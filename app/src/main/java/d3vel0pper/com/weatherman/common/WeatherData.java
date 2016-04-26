@@ -17,7 +17,8 @@ public class WeatherData {
 
     //description whether of where
     private String wTitle = "";
-    private String descriptionText = "";
+    private String detailText = "";
+    private String telopText = "";
     //public String[] wForcast;
     //area + "/" + prefecture + "/" + city
     private String wLocation = "";
@@ -25,7 +26,10 @@ public class WeatherData {
      * provider.name + ":" + provider.link + "\n" + link + "\n + title"
      */
     private String wCopyright = "";
-    private String ImgURL;
+    private String ImgURL = "";
+    private String temperatureMax = "";
+    private String temperatureMin = "";
+
 
 
     //Setters
@@ -36,11 +40,11 @@ public class WeatherData {
         this.wTitle = title;
     }
 
-    public void setDescriptionText(String descriptionText){
-        if(descriptionText==null){
+    public void setDetailTaxt(String detailText){
+        if(detailText==null){
             return;
         }
-        this.descriptionText = descriptionText;
+        this.detailText = detailText;
     }
 
     /**
@@ -65,14 +69,30 @@ public class WeatherData {
         this.wCopyright = copyright;
     }
 
+    public void setImgURL(String url){
+        this.ImgURL = url;
+    }
+
+    public void setTemperatureMax(String temperatureMax){
+        this.temperatureMax = temperatureMax;
+    }
+
+    public void setGetTemperatureMin(String temperatureMin){
+        this.temperatureMin = temperatureMin;
+    }
+
+    public void setTelopText(String telopText){
+        this.telopText = telopText;
+    }
+
     //Getters
 
     public String getTitle(){
         return this.wTitle;
     }
 
-    public String getDescriptionText(){
-        return this.descriptionText;
+    public String getTelopText(){
+        return this.telopText;
     }
 
     public String getLocation(){
@@ -81,6 +101,22 @@ public class WeatherData {
 
     public String getCopyright(){
         return this.wCopyright;
+    }
+
+    public String getMaxTemperature(){
+        return this.temperatureMax;
+    }
+
+    public String getTemperatureMin(){
+        return this.temperatureMin;
+    }
+
+    public String getDetailText(){
+        return this.detailText;
+    }
+
+    public String getImgURL(){
+        return this.ImgURL;
     }
 
 }
