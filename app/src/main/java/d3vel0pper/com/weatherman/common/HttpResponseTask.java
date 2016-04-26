@@ -80,7 +80,7 @@ public class HttpResponseTask extends AsyncTask<Void,Void,WeatherData> {
             temp = jsonArray.getJSONObject(0);
 
             JSONObject temp2 = temp.getJSONObject("temperature");
-            if(temp2 == null){
+            if(temp2.isNull("max")){
                 data.setTemperatureMax("-");
             } else {
                 data.setTemperatureMax(temp2.getJSONObject("max").getString("celsius"));

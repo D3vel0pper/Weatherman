@@ -27,15 +27,16 @@ import d3vel0pper.com.weatherman.fragment.SettingFragment;
 
 //
 
-//public class MainActivity extends ActionBarActivity
-public class MainActivity extends FragmentActivity
+public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
-
+    /**
+    * Used to store the last screen title. For use in {@link #restoreActionBar()}.
+    */
     private CharSequence mTitle;
 
     @Override
@@ -91,14 +92,14 @@ public class MainActivity extends FragmentActivity
         }
     }
 
-    /*
+
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
     }
-    */
+
 
 
     @Override
@@ -108,7 +109,7 @@ public class MainActivity extends FragmentActivity
             // if the drawer is not showing. Otherwise, let the drawer
             // decide what to show in the action bar.
             getMenuInflater().inflate(R.menu.main, menu);
-//            restoreActionBar();
+            restoreActionBar();
             return true;
         }
         return super.onCreateOptionsMenu(menu);
@@ -166,25 +167,6 @@ public class MainActivity extends FragmentActivity
                 task.execute();
                 flag = true;
             }
-
-            TextView wTitle,telopText,temperatureMax,temperatureMin,wCopyright;
-            Button detailBtn;
-            ImageView temperatureImg;
-
-            //Title
-            wTitle = (TextView)rootView.findViewById(R.id.wTitle);
-            //description text of forecast
-            telopText = (TextView)rootView.findViewById(R.id.telopText);
-            //Max temperature
-            temperatureMax = (TextView)rootView.findViewById(R.id.temperatureMax);
-            //Min temperature
-            temperatureMin = (TextView)rootView.findViewById(R.id.temperatureMin);
-            //Copyright
-            wCopyright = (TextView)rootView.findViewById(R.id.wCopyright);
-
-            detailBtn = (Button)rootView.findViewById(R.id.detailBtn);
-
-            temperatureImg = (ImageView)rootView.findViewById(R.id.wImage);
 
             return rootView;
         }
