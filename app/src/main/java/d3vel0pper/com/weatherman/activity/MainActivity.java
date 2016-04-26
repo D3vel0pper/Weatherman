@@ -1,6 +1,7 @@
 package d3vel0pper.com.weatherman.activity;
 
 import android.app.Activity;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -26,7 +27,8 @@ import d3vel0pper.com.weatherman.fragment.SettingFragment;
 
 //
 
-public class MainActivity extends ActionBarActivity
+//public class MainActivity extends ActionBarActivity
+public class MainActivity extends FragmentActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /**
@@ -34,9 +36,6 @@ public class MainActivity extends ActionBarActivity
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
-    /**
-     * Used to store the last screen title. For use in {@link #restoreActionBar()}.
-     */
     private CharSequence mTitle;
 
     @Override
@@ -62,7 +61,7 @@ public class MainActivity extends ActionBarActivity
 
         // update the main content by replacing fragments when ND Item selected
         switch(position){
-            case 1:
+            case 0:
                 SettingFragment settingFragment = SettingFragment.newInstance("Setting");
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, settingFragment)
@@ -92,12 +91,14 @@ public class MainActivity extends ActionBarActivity
         }
     }
 
+    /*
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
     }
+    */
 
 
     @Override
@@ -107,7 +108,7 @@ public class MainActivity extends ActionBarActivity
             // if the drawer is not showing. Otherwise, let the drawer
             // decide what to show in the action bar.
             getMenuInflater().inflate(R.menu.main, menu);
-            restoreActionBar();
+//            restoreActionBar();
             return true;
         }
         return super.onCreateOptionsMenu(menu);
