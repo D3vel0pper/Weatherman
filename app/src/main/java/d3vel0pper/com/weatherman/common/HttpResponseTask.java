@@ -3,6 +3,8 @@ package d3vel0pper.com.weatherman.common;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -119,17 +121,38 @@ public class HttpResponseTask extends AsyncTask<Void,Void,WeatherData> {
         } else{
             Toast.makeText(act,"Now You Can Get Start To Access", Toast.LENGTH_SHORT).show();
 
-            TextView wTitle = (TextView)linearLayout.findViewById(R.id.wTitle);
+            TextView wTitle,telopText,temperatureMax,temperatureMin,wCopyright;
+            ImageView temperatureImg;
+
+            //Title
+            wTitle = (TextView)linearLayout.findViewById(R.id.wTitle);
             wTitle.setText(data.getTitle());
+            //description text of forecast
+            telopText = (TextView)linearLayout.findViewById(R.id.telopText);
+            telopText.setText(data.getTelopText());
+            //Max temperature
+            temperatureMax = (TextView)linearLayout.findViewById(R.id.temperatureMax);
+            temperatureMax.setText(data.getMaxTemperature());
+            //Min temperature
+            temperatureMin = (TextView)linearLayout.findViewById(R.id.temperatureMin);
+            temperatureMin.setText(data.getMaxTemperature());
+
+            //Copyright
+            wCopyright = (TextView)linearLayout.findViewById(R.id.wCopyright);
+
+            temperatureImg = (ImageView)linearLayout.findViewById(R.id.wImage);
+
+
+            wCopyright.setText(data.getCopyright());
+            linearLayout.invalidate();
+
+
 //            TextView descTime = (TextView)linearLayout.findViewById(R.id.descTime);
 //            descTime.setText(data.getDescriptionTime());
 //            TextView descText = (TextView)linearLayout.findViewById(R.id.description);
 //            descText.setText(data.getDescriptionText());
 //            TextView wLocation = (TextView)linearLayout.findViewById(R.id.location);
 //            wLocation.setText(data.getLocation());
-            TextView wCopyright = (TextView)linearLayout.findViewById(R.id.wCopyright);
-            wCopyright.setText(data.getCopyright());
-            linearLayout.invalidate();
 
         }
     }

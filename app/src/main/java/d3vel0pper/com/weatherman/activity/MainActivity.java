@@ -63,6 +63,11 @@ public class MainActivity extends ActionBarActivity
         // update the main content by replacing fragments when ND Item selected
         switch(position){
             case 0:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                        .commit();
+                break;
+            case 1:
                 SettingFragment settingFragment = SettingFragment.newInstance("Setting");
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, settingFragment)
@@ -168,8 +173,17 @@ public class MainActivity extends ActionBarActivity
                 flag = true;
             }
 
+            Button detailBtn;
+            detailBtn = (Button)rootView.findViewById(R.id.detailBtn);
+            detailBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //show dialog
+                }
+            });
             return rootView;
         }
+
 
         @Override
         public void onAttach(Activity activity) {
