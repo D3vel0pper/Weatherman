@@ -63,14 +63,16 @@ public class MainActivity extends ActionBarActivity
         // update the main content by replacing fragments when ND Item selected
         switch(position){
             case 1:
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                        .commit();
-            default:
                 SettingFragment settingFragment = SettingFragment.newInstance("Setting");
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, settingFragment)
                         .commit();
+                break;
+            default:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                        .commit();
+                break;
         }
 
 

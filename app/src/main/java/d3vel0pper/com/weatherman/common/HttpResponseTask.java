@@ -81,8 +81,18 @@ public class HttpResponseTask extends AsyncTask<Void,Void,WeatherData> {
             /*
             Max and Min will have case returning null
              */
-            data.setTemperatureMax(temp.getJSONObject("temperature").getJSONObject("max").getString("celsius"));
-            data.setGetTemperatureMin(temp.getJSONObject("temperature").getJSONObject("min").getString("celsius"));
+            JSONObject temp2 = temp.getJSONObject("temperature").getJSONObject("max");
+            if(temp2 == null){
+                data.setTemperatureMax("-");
+            } else {
+                data.setTemperatureMax(temp2.getString("celsius"));
+            }
+            temp2 = temp.getJSONObject("temperature");
+            if(temp2.isNull("min")){
+                data.setTemperatureMax("-");
+            } else {
+                data.setGetTemperatureMin(temp2.getJSONObject("min").getString("celsius"));
+            }
             /*
              maybe at here need dataLabel
              */
