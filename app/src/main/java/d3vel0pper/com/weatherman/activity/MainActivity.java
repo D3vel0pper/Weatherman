@@ -83,7 +83,9 @@ public class MainActivity extends ActionBarActivity
                         .commit();
                 break;
             default:
-                Toast.makeText(getBaseContext(),"OtherItemClicked!!",Toast.LENGTH_SHORT).show();
+                DialogFragment dialogFragment = new PlaceholderFragment.myDialogFragment();
+                dialogFragment.show(getSupportFragmentManager(),"NDdialog");
+                //Toast.makeText(getBaseContext(),"OtherItemClicked!!",Toast.LENGTH_SHORT).show();
                 break;
         }
 
