@@ -110,11 +110,15 @@ public class HttpResponseTask extends AsyncTask<Void,Void,WeatherData> {
             //telop
             data.setTelopText(temp.getString("telop"));
 
+            //Detail
+            data.setDetailTaxt(jsonObject.getJSONObject("description").getString("text"));
+
+
 
 
 
         } catch(JSONException e){
-            Log.d("JSONException", e.toString());
+            //Log.d("JSONException", e.toString());
         }
 
         //Return

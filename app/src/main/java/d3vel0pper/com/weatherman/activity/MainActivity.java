@@ -1,6 +1,10 @@
 package d3vel0pper.com.weatherman.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.support.v4.app.DialogFragment;
+import android.content.DialogInterface;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -23,6 +27,7 @@ import org.w3c.dom.Text;
 
 import d3vel0pper.com.weatherman.R;
 import d3vel0pper.com.weatherman.common.HttpResponseTask;
+import d3vel0pper.com.weatherman.common.WeatherData;
 import d3vel0pper.com.weatherman.fragment.NavigationDrawerFragment;
 import d3vel0pper.com.weatherman.fragment.SettingFragment;
 
@@ -38,6 +43,7 @@ public class MainActivity extends ActionBarActivity
     /**
     * Used to store the last screen title. For use in {@link #restoreActionBar()}.
     */
+    protected String dialogData = "";
     private CharSequence mTitle;
 
     @Override
@@ -175,13 +181,16 @@ public class MainActivity extends ActionBarActivity
                 task.execute();
                 flag = true;
             }
+//            LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
+//            View view = layoutInflater.inflate(R.layout.dialog_layout);
 
             Button detailBtn;
             detailBtn = (Button)rootView.findViewById(R.id.detailBtn);
             detailBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //show dialog
+                    DialogFragment dialogFragment = new myDialogFragment();
+                    dialogFragment.show(getFragmentManager(),"Detail");
                 }
             });
             return rootView;
@@ -206,6 +215,25 @@ public class MainActivity extends ActionBarActivity
             /*
             write code to make borderline here
              */
+        }
+
+        /**
+         * DialogFragment
+         */
+
+        public static class myDialogFragment extends DialogFragment {
+            @Override
+            public Dialog onCreateDialog(Bundle savedInstanceState){
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Detail").setPositiveButton("close",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+                return builder.create();
+            }
         }
 
     }
