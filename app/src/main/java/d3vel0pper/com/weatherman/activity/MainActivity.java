@@ -169,6 +169,7 @@ public class MainActivity extends ActionBarActivity
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             parentLayout = (LinearLayout)rootView.findViewById(R.id.parent);
 
+
             if(!flag){
                 HttpResponseTask task = new HttpResponseTask(this.getActivity(),parentLayout);
                 task.execute();
@@ -199,6 +200,12 @@ public class MainActivity extends ActionBarActivity
         public void onDetach() {
             super.onDetach();
             flag = false;
+        }
+
+        private void setBorder(LinearLayout borderObj){
+            /*
+            write code to make borderline here
+             */
         }
 
     }

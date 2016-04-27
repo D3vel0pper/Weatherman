@@ -69,19 +69,22 @@ public class HttpResponseTask extends AsyncTask<Void,Void,WeatherData> {
         //get JSON Data and then put to the Data structure
         try{
             JSONObject jsonObject = new JSONObject(result);
+            JSONObject temp;
             //Title
             data.setTitle(jsonObject.getString("title"));
-            //data.setDescriptionText(jsonObject.getJSONObject("description").getString("text"));
-            //data.setDescriptionTime(jsonObject.getJSONObject("description").getString("publicTime"));
+            temp = jsonObject.getJSONObject("location");
             //Location
-            data.setLocation(jsonObject.getJSONObject("location").getString("area") + " / " +
-                    jsonObject.getJSONObject("location").getString("prefecture") + " / " +
-                    jsonObject.getJSONObject("location").getString("city"));
+            data.setLocation(temp.getString("area") + " / " +
+                    temp.getString("prefecture") + " / " +
+                    temp.getString("city"));
             //Copyrights
+            String copyright;
             JSONArray jsonArray = jsonObject.getJSONObject("copyright").getJSONArray("provider");
-            JSONObject temp = jsonArray.getJSONObject(0);
-            data.setwCopyright(temp.getString("name") + " : " + temp.getString("link") + "\n" +
-                    jsonObject.getJSONObject("copyright").getString("link") + "\n" + jsonObject.getJSONObject("copyright").getString("title"));
+            temp = jsonArray.getJSONObject(0);
+            copyright = temp.getString("name") + " : " + temp.getString("link") + "\n";
+            temp = jsonObject.getJSONObject("copyright");
+            copyright += temp.getString("link") + "\n" + temp.getString("title");
+            data.setwCopyright(copyright);
             //Temperature
             jsonArray = jsonObject.getJSONArray("forecasts");
             temp = jsonArray.getJSONObject(0);
@@ -94,9 +97,9 @@ public class HttpResponseTask extends AsyncTask<Void,Void,WeatherData> {
             }
             temp2 = temp.getJSONObject("temperature");
             if(temp2.isNull("min")){
-                data.setTemperatureMax("-");
+                data.setTemperatureMin("-");
             } else {
-                data.setGetTemperatureMin(temp2.getJSONObject("min").getString("celsius"));
+                data.setTemperatureMin(temp2.getJSONObject("min").getString("celsius"));
             }
             /*
              maybe at here need dataLabel
@@ -138,10 +141,10 @@ public class HttpResponseTask extends AsyncTask<Void,Void,WeatherData> {
             telopText.setText(data.getTelopText());
             //Max temperature
             temperatureMax = (TextView)linearLayout.findViewById(R.id.temperatureMax);
-            temperatureMax.setText(data.getMaxTemperature());
+            temperatureMax.setText(temperatureMax.getText() + data.getMaxTemperature());
             //Min temperature
             temperatureMin = (TextView)linearLayout.findViewById(R.id.temperatureMin);
-            temperatureMin.setText(data.getMaxTemperature());
+            temperatureMin.setText(temperatureMin.getText() + data.getMinTemperature());
 
             //Copyright
             wCopyright = (TextView)linearLayout.findViewById(R.id.wCopyright);

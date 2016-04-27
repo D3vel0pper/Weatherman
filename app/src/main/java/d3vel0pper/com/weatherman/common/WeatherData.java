@@ -77,7 +77,7 @@ public class WeatherData {
         this.temperatureMax = temperatureMax;
     }
 
-    public void setGetTemperatureMin(String temperatureMin){
+    public void setTemperatureMin(String temperatureMin){
         this.temperatureMin = temperatureMin;
     }
 
@@ -107,7 +107,7 @@ public class WeatherData {
         return this.temperatureMax;
     }
 
-    public String getTemperatureMin(){
+    public String getMinTemperature(){
         return this.temperatureMin;
     }
 
