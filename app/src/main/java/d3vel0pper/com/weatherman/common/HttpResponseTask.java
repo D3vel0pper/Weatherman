@@ -22,6 +22,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 import d3vel0pper.com.weatherman.R;
+import d3vel0pper.com.weatherman.activity.MainActivity;
 
 /**
  * Created by D3vel0pper on 2016/04/24.
@@ -29,16 +30,18 @@ import d3vel0pper.com.weatherman.R;
 public class HttpResponseTask extends AsyncTask<Void,Void,WeatherData> {
 
     private String LocBaseUrl;
-    private Activity act = null;
+    private MainActivity act;
+    private MainActivity.PlaceholderFragment phFragment;
     //layout which have each textview to show
     private LinearLayout linearLayout;
     private ProgressDialog progressDialog;
     private String dialogData;
 
-    public HttpResponseTask(Activity activity, LinearLayout ll){
+    public HttpResponseTask(MainActivity activity, LinearLayout ll, MainActivity.PlaceholderFragment parentFragment){
         this.LocBaseUrl = activity.getString(R.string.LocBaseUrl);
         this.act = activity;
         this.linearLayout = ll;
+        this.phFragment = parentFragment;
     }
 
     @Override
@@ -158,10 +161,7 @@ public class HttpResponseTask extends AsyncTask<Void,Void,WeatherData> {
             progressDialog.dismiss();
 
             //ValuePassing To MainActivity
-            Intent intent = act.getIntent();
-            intent.putExtra("DialogData",dialogData);
-
-
+            phFragment.setDialogData(data.getDetailText());
 
         }
     }

@@ -74,7 +74,7 @@
         <TextView
             android:id="@+id/temperatureMax"
             android:text="Max : "
-            android:textSize="48sp"
+            android:textSize="35sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="15dp"
@@ -83,7 +83,7 @@
         <TextView
             android:id="@+id/temperatureMin"
             android:text="Min : "
-            android:textSize="48sp"
+            android:textSize="35sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"

@@ -149,7 +149,11 @@ public class MainActivity extends ActionBarActivity
      */
     public static class PlaceholderFragment extends Fragment {
 
-        protected static String dialogData = "";
+        private static String dialogData;
+        public void setDialogData(String string){
+            dialogData = string;
+        }
+
         private boolean flag = false;
         private LinearLayout parentLayout;
         /**
@@ -181,14 +185,10 @@ public class MainActivity extends ActionBarActivity
 
 
             if(!flag){
-                HttpResponseTask task = new HttpResponseTask(this.getActivity(),parentLayout);
+                HttpResponseTask task = new HttpResponseTask((MainActivity)getActivity(),parentLayout,this);
                 task.execute();
                 flag = true;
             }
-
-
-//            LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-//            View view = layoutInflater.inflate(R.layout.dialog_layout);
 
             Button detailBtn;
             detailBtn = (Button)rootView.findViewById(R.id.detailBtn);
@@ -199,6 +199,7 @@ public class MainActivity extends ActionBarActivity
                     dialogFragment.show(getFragmentManager(),"Detail");
                 }
             });
+
             return rootView;
         }
 
@@ -232,40 +233,21 @@ public class MainActivity extends ActionBarActivity
             public View onCreateView(LayoutInflater inflater,ViewGroup viewGroup, Bundle bundle){
                 super.onCreateView(inflater,viewGroup,bundle);
                 //Inflating layout of dialog
-//                LayoutInflater inflater = (LayoutInflater)getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
                 View view = inflater.inflate(R.layout.dialog_layout,null);
                 //ValuePassing From HttpResponseTask
-                Intent intent = getActivity().getIntent();
-                dialogData = intent.getStringExtra("DialogData");
                 TextView textView = (TextView)view.findViewById(R.id.dialogText);
                 textView.setText(dialogData);
-
-
-                //ValuePassing From HttpResponseTask
-                //Intent intent = getActivity().getIntent();
-                dialogData = intent.getStringExtra("DialogData");
-
                 return view;
+
 
             }
 
             @Override
             public Dialog onCreateDialog(Bundle savedInstanceState){
 
-                /*
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("Detail").setPositiveButton("close",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        });
-
-                return builder.create();
-                */
                 Dialog dialog = super.onCreateDialog(savedInstanceState);
                 dialog.setTitle("Detail");
+
                 return dialog;
             }
         }
