@@ -3,6 +3,7 @@ package d3vel0pper.com.weatherman.activity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.support.v4.app.DialogFragment;
 import android.content.DialogInterface;
 import android.support.v4.app.FragmentActivity;
@@ -43,7 +44,6 @@ public class MainActivity extends ActionBarActivity
     /**
     * Used to store the last screen title. For use in {@link #restoreActionBar()}.
     */
-    protected String dialogData = "";
     private CharSequence mTitle;
 
     @Override
@@ -148,6 +148,8 @@ public class MainActivity extends ActionBarActivity
      * A placeholder fragment containing a simple view.
      */
     public static class PlaceholderFragment extends Fragment {
+
+        protected static String dialogData = "";
         private boolean flag = false;
         private LinearLayout parentLayout;
         /**
@@ -183,6 +185,8 @@ public class MainActivity extends ActionBarActivity
                 task.execute();
                 flag = true;
             }
+
+
 //            LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
 //            View view = layoutInflater.inflate(R.layout.dialog_layout);
 
@@ -225,7 +229,30 @@ public class MainActivity extends ActionBarActivity
 
         public static class myDialogFragment extends DialogFragment {
             @Override
+            public View onCreateView(LayoutInflater inflater,ViewGroup viewGroup, Bundle bundle){
+                super.onCreateView(inflater,viewGroup,bundle);
+                //Inflating layout of dialog
+//                LayoutInflater inflater = (LayoutInflater)getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
+                View view = inflater.inflate(R.layout.dialog_layout,null);
+                //ValuePassing From HttpResponseTask
+                Intent intent = getActivity().getIntent();
+                dialogData = intent.getStringExtra("DialogData");
+                TextView textView = (TextView)view.findViewById(R.id.dialogText);
+                textView.setText(dialogData);
+
+
+                //ValuePassing From HttpResponseTask
+                //Intent intent = getActivity().getIntent();
+                dialogData = intent.getStringExtra("DialogData");
+
+                return view;
+
+            }
+
+            @Override
             public Dialog onCreateDialog(Bundle savedInstanceState){
+
+                /*
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("Detail").setPositiveButton("close",
                         new DialogInterface.OnClickListener() {
@@ -234,7 +261,12 @@ public class MainActivity extends ActionBarActivity
 
                             }
                         });
+
                 return builder.create();
+                */
+                Dialog dialog = super.onCreateDialog(savedInstanceState);
+                dialog.setTitle("Detail");
+                return dialog;
             }
         }
 

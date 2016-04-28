@@ -44,7 +44,7 @@ public class WeatherData {
         if(detailText==null){
             return;
         }
-        this.detailText = detailText;
+        this.detailText = detailText.replaceAll("\n","    ");
     }
 
     /**

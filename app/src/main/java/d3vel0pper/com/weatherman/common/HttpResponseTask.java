@@ -2,6 +2,7 @@ package d3vel0pper.com.weatherman.common;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Button;
@@ -32,6 +33,7 @@ public class HttpResponseTask extends AsyncTask<Void,Void,WeatherData> {
     //layout which have each textview to show
     private LinearLayout linearLayout;
     private ProgressDialog progressDialog;
+    private String dialogData;
 
     public HttpResponseTask(Activity activity, LinearLayout ll){
         this.LocBaseUrl = activity.getString(R.string.LocBaseUrl);
@@ -70,6 +72,9 @@ public class HttpResponseTask extends AsyncTask<Void,Void,WeatherData> {
         try{
             JSONObject jsonObject = new JSONObject(result);
             JSONObject temp;
+            //Detail
+            data.setDetailTaxt(jsonObject.getJSONObject("description").getString("text"));
+            dialogData = data.getDetailText();
             //Title
             data.setTitle(jsonObject.getString("title"));
             temp = jsonObject.getJSONObject("location");
@@ -109,13 +114,6 @@ public class HttpResponseTask extends AsyncTask<Void,Void,WeatherData> {
             data.setImgURL(temp.getJSONObject("image").getString("url"));
             //telop
             data.setTelopText(temp.getString("telop"));
-
-            //Detail
-            data.setDetailTaxt(jsonObject.getJSONObject("description").getString("text"));
-
-
-
-
 
         } catch(JSONException e){
             //Log.d("JSONException", e.toString());
@@ -158,6 +156,10 @@ public class HttpResponseTask extends AsyncTask<Void,Void,WeatherData> {
 
             wCopyright.setText(data.getCopyright());
             progressDialog.dismiss();
+
+            //ValuePassing To MainActivity
+            Intent intent = act.getIntent();
+            intent.putExtra("DialogData",dialogData);
 
 
 
