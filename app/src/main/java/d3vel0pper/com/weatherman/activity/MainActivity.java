@@ -32,6 +32,7 @@ import d3vel0pper.com.weatherman.common.HttpResponseTask;
 import d3vel0pper.com.weatherman.common.WeatherData;
 import d3vel0pper.com.weatherman.fragment.NavigationDrawerFragment;
 import d3vel0pper.com.weatherman.fragment.SettingFragment;
+import d3vel0pper.com.weatherman.fragment.myDialogFragment;
 
 //
 
@@ -74,17 +75,21 @@ public class MainActivity extends ActionBarActivity
         switch(position){
             case 0:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                        .replace(R.id.container, PlaceholderFragment.newInstance())
                         .commit();
                 break;
             case 1:
                 SettingFragment settingFragment = SettingFragment.newInstance("Setting");
+                fragmentManager.beginTransaction().addToBackStack(null).replace(R.id.container,settingFragment).commit();
+                /*
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, settingFragment)
                         .commit();
+                        */
                 break;
             default:
-                DialogFragment dialogFragment = new PlaceholderFragment.myDialogFragment();
+                myDialogFragment dialogFragment = new myDialogFragment();
+                dialogFragment.setData("Licences Show At Here");
                 dialogFragment.show(getSupportFragmentManager(),"NDdialog");
                 //Toast.makeText(getBaseContext(),"OtherItemClicked!!",Toast.LENGTH_SHORT).show();
                 break;
@@ -167,10 +172,10 @@ public class MainActivity extends ActionBarActivity
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
+        public static PlaceholderFragment newInstance() {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            args.putInt(ARG_SECTION_NUMBER, 0);
             fragment.setArguments(args);
             return fragment;
         }
@@ -196,7 +201,8 @@ public class MainActivity extends ActionBarActivity
             detailBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    DialogFragment dialogFragment = new myDialogFragment();
+                    myDialogFragment dialogFragment = new myDialogFragment();
+                    dialogFragment.setData(dialogData);
                     dialogFragment.show(getFragmentManager(),"Detail");
                 }
             });
@@ -225,34 +231,6 @@ public class MainActivity extends ActionBarActivity
              */
         }
 
-        /**
-         * DialogFragment
-         */
-
-        public static class myDialogFragment extends DialogFragment {
-            @Override
-            public View onCreateView(LayoutInflater inflater,ViewGroup viewGroup, Bundle bundle){
-                super.onCreateView(inflater,viewGroup,bundle);
-                //Inflating layout of dialog
-                View view = inflater.inflate(R.layout.dialog_layout,null);
-                //ValuePassing From HttpResponseTask
-                TextView textView = (TextView)view.findViewById(R.id.dialogText);
-                textView.setText(dialogData);
-                return view;
-
-
-            }
-
-            @NonNull
-            @Override
-            public Dialog onCreateDialog(Bundle savedInstanceState){
-
-                Dialog dialog = super.onCreateDialog(savedInstanceState);
-                dialog.setTitle("Detail");
-
-                return dialog;
-            }
-        }
 
     }
 
