@@ -101,13 +101,13 @@ public class HttpResponseTask extends AsyncTask<Void,Void,WeatherData> {
             if(temp2.isNull("max")){
                 data.setTemperatureMax("-");
             } else {
-                data.setTemperatureMax(temp2.getJSONObject("max").getString("celsius"));
+                data.setTemperatureMax(temp2.getJSONObject("max").getString("celsius") + "℃");
             }
             temp2 = temp.getJSONObject("temperature");
             if(temp2.isNull("min")){
                 data.setTemperatureMin("-");
             } else {
-                data.setTemperatureMin(temp2.getJSONObject("min").getString("celsius"));
+                data.setTemperatureMin(temp2.getJSONObject("min").getString("celsius") + "℃");
             }
             /*
              maybe at here need dataLabel
