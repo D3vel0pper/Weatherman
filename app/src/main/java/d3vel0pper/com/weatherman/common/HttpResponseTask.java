@@ -159,6 +159,8 @@ public class HttpResponseTask extends AsyncTask<Void,Void,WeatherData> {
             wCopyright.setText(data.getCopyright());
             progressDialog.dismiss();
 
+
+
         }
     }
 
