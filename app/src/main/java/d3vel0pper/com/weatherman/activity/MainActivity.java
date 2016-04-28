@@ -194,6 +194,8 @@ public class MainActivity extends ActionBarActivity
                 HttpResponseTask task = new HttpResponseTask((MainActivity)getActivity(),parentLayout,this);
                 task.execute();
                 flag = true;
+            } else {
+                parentLayout.invalidate();
             }
 
             Button detailBtn;
@@ -224,6 +226,9 @@ public class MainActivity extends ActionBarActivity
             super.onDetach();
             flag = false;
         }
+
+        @Override
+        public void onSaveInstanceState(Bundle outState){}
 
         private void setBorder(LinearLayout borderObj){
             /*
