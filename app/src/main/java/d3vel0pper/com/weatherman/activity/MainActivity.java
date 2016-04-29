@@ -160,7 +160,7 @@ public class MainActivity extends ActionBarActivity
             dialogData = string;
         }
 
-        private boolean flag = false;
+        private WeatherData responseData;
         private LinearLayout parentLayout;
         /**
          * The fragment argument representing the section number for this
@@ -189,14 +189,38 @@ public class MainActivity extends ActionBarActivity
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             parentLayout = (LinearLayout)rootView.findViewById(R.id.parent);
 
+            responseData = new WeatherData();
 
-            if(!flag){
+            if(!responseData.getFlag()){
                 HttpResponseTask task = new HttpResponseTask((MainActivity)getActivity(),parentLayout,this);
                 task.execute();
-                flag = true;
-            } else {
-                parentLayout.invalidate();
+            } else{
+                TextView wTitle,telopText,temperatureMax,temperatureMin,wCopyright;
+                ImageView temperatureImg;
+
+                //Title
+                wTitle = (TextView)rootView.findViewById(R.id.wTitle);
+                wTitle.setText(responseData.getTitle());
+                //description text of forecast
+                telopText = (TextView)rootView.findViewById(R.id.telopText);
+                telopText.setText(responseData.getTelopText());
+                //Max temperature
+                temperatureMax = (TextView)rootView.findViewById(R.id.temperatureMax);
+                temperatureMax.setText(temperatureMax.getText() + responseData.getMaxTemperature());
+                //Min temperature
+                temperatureMin = (TextView)rootView.findViewById(R.id.temperatureMin);
+                temperatureMin.setText(temperatureMin.getText() + responseData.getMinTemperature());
+
+                //Copyright
+                wCopyright = (TextView)rootView.findViewById(R.id.wCopyright);
+
+                temperatureImg = (ImageView)rootView.findViewById(R.id.wImage);
+
+
+                wCopyright.setText(responseData.getCopyright());
+
             }
+
 
             Button detailBtn;
             detailBtn = (Button)rootView.findViewById(R.id.detailBtn);
@@ -224,11 +248,12 @@ public class MainActivity extends ActionBarActivity
         @Override
         public void onDetach() {
             super.onDetach();
-            flag = false;
+            responseData.dropFlag();
         }
 
-        @Override
-        public void onSaveInstanceState(Bundle outState){}
+        public void setResponseData(WeatherData data){
+            this.responseData = data;
+        }
 
         private void setBorder(LinearLayout borderObj){
             /*

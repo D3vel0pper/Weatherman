@@ -35,7 +35,6 @@ public class HttpResponseTask extends AsyncTask<Void,Void,WeatherData> {
     //layout which have each textview to show
     private LinearLayout linearLayout;
     private ProgressDialog progressDialog;
-    private String dialogData;
 
     public HttpResponseTask(MainActivity activity, LinearLayout ll, MainActivity.PlaceholderFragment parentFragment){
         this.LocBaseUrl = activity.getString(R.string.LocBaseUrl);
@@ -77,7 +76,6 @@ public class HttpResponseTask extends AsyncTask<Void,Void,WeatherData> {
             JSONObject temp;
             //Detail
             data.setDetailTaxt(jsonObject.getJSONObject("description").getString("text"));
-            dialogData = data.getDetailText();
             //Title
             data.setTitle(jsonObject.getString("title"));
             temp = jsonObject.getJSONObject("location");
@@ -130,40 +128,38 @@ public class HttpResponseTask extends AsyncTask<Void,Void,WeatherData> {
     protected void onPostExecute(WeatherData data){
         super.onPostExecute(data);
 
-        if(data == null){
-            Toast.makeText(act, "!! result is null !!", Toast.LENGTH_SHORT).show();
-        } else{
-            Toast.makeText(act,"Now You Can Get Start To Access", Toast.LENGTH_SHORT).show();
+        data.standFlag();
+        phFragment.setResponseData(data);
 
-            TextView wTitle,telopText,temperatureMax,temperatureMin,wCopyright;
-            ImageView temperatureImg;
+        TextView wTitle,telopText,temperatureMax,temperatureMin,wCopyright;
+        ImageView temperatureImg;
 
-            //Title
-            wTitle = (TextView)linearLayout.findViewById(R.id.wTitle);
-            wTitle.setText(data.getTitle());
-            //description text of forecast
-            telopText = (TextView)linearLayout.findViewById(R.id.telopText);
-            telopText.setText(data.getTelopText());
-            //Max temperature
-            temperatureMax = (TextView)linearLayout.findViewById(R.id.temperatureMax);
-            temperatureMax.setText(temperatureMax.getText() + data.getMaxTemperature());
-            //Min temperature
-            temperatureMin = (TextView)linearLayout.findViewById(R.id.temperatureMin);
-            temperatureMin.setText(temperatureMin.getText() + data.getMinTemperature());
+        //Title
+        wTitle = (TextView)linearLayout.findViewById(R.id.wTitle);
+        wTitle.setText(data.getTitle());
+        //description text of forecast
+        telopText = (TextView)linearLayout.findViewById(R.id.telopText);
+        telopText.setText(data.getTelopText());
+        //Max temperature
+        temperatureMax = (TextView)linearLayout.findViewById(R.id.temperatureMax);
+        temperatureMax.setText(temperatureMax.getText() + data.getMaxTemperature());
+        //Min temperature
+        temperatureMin = (TextView)linearLayout.findViewById(R.id.temperatureMin);
+        temperatureMin.setText(temperatureMin.getText() + data.getMinTemperature());
 
-            //Copyright
-            wCopyright = (TextView)linearLayout.findViewById(R.id.wCopyright);
+        //Copyright
+        wCopyright = (TextView)linearLayout.findViewById(R.id.wCopyright);
 
-            temperatureImg = (ImageView)linearLayout.findViewById(R.id.wImage);
+        temperatureImg = (ImageView)linearLayout.findViewById(R.id.wImage);
 
 
-            wCopyright.setText(data.getCopyright());
-            progressDialog.dismiss();
+        wCopyright.setText(data.getCopyright());
+        progressDialog.dismiss();
 
-            //ValuePassing To MainActivity
-            phFragment.setDialogData(data.getDetailText());
+        //ValuePassing To MainActivity
+        phFragment.setDialogData(data.getDetailText());
 
-        }
+
     }
 
 

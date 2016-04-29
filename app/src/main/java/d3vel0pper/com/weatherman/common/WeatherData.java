@@ -29,6 +29,8 @@ public class WeatherData {
     private String ImgURL = "";
     private String temperatureMax = "";
     private String temperatureMin = "";
+    //flag
+    private boolean flag = false;
 
 
 
@@ -87,6 +89,14 @@ public class WeatherData {
         this.telopText = telopText;
     }
 
+    public void standFlag(){
+        this.flag = true;
+    }
+
+    public void dropFlag(){
+        this.flag = false;
+    }
+
     //Getters
 
     public String getTitle(){
@@ -119,6 +129,10 @@ public class WeatherData {
 
     public String getImgURL(){
         return this.ImgURL;
+    }
+
+    public boolean getFlag(){
+        return this.flag;
     }
 
 }
