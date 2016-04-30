@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.common.collect.ImmutableMap;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -31,7 +33,7 @@ public class SettingFragment extends Fragment {
     private String[] cities;
     //private Map[] cityMap = new Map[50];
     //private List<Map<String,String>> citiMap = new ArrayList<>();
-    private Map<String,String> map = new HashMap<>();
+    //private Map<String,String> map = new HashMap<>();
     private Map<Integer,Map<String,String>> cityMap = new HashMap<>();
 
     private static final String ARG_SECTION_NAME = "Setting";
@@ -54,7 +56,7 @@ public class SettingFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        setCities();
+        setCities();
         for(int i = 0;i < 50;i++){
 //            cityMap[i] = new Map<String,String>();
 
@@ -110,21 +112,21 @@ public class SettingFragment extends Fragment {
 //        public void onFragmentInteraction(Uri uri);
 //    }
 
-//    private void setCities(){
-//        map.put("稚内","011000");
-//        map.put("旭川","012010");
-//        map.put("留萌","012020");
-//        cityMap.put(0,map);
-//
-//        map.put("網走","013010");
-//        map.put("北見","013020");
-//        map.put("紋別","013030");
-//        map.put("根室","014010");
-//        map.put("釧路","014020");
-//        map.put("帯広","014030");
-//        cityMap.put(1,map);
-//        map.clear();
-//    }
+    private void setCities(){
+        map.put("稚内","011000");
+        map.put("旭川","012010");
+        map.put("留萌","012020");
+        cityMap.put(0,map);
+
+        map.put("網走","013010");
+        map.put("北見","013020");
+        map.put("紋別","013030");
+        map.put("根室","014010");
+        map.put("釧路","014020");
+        map.put("帯広","014030");
+        cityMap.put(1,map);
+        map.clear();
+    }
 
 /*
     private void setValuesofMap(){
